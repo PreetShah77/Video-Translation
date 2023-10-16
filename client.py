@@ -7,7 +7,7 @@ from deep_translator import GoogleTranslator
 
 
 openai.api_key = "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"
-
+st.title("Video Translation App")
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
