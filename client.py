@@ -6,15 +6,19 @@ import openai
 from deep_translator import GoogleTranslator
 
 
-openai.api_key = "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"
-st.title("Video Translation App")
+openai.api_key = st.secrets["openai_key"]
+
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             </style>
             """
+st.title("Video Translation App")
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+target_language = st.selectbox("Select target language for translation", ["hi", "es", "fr", "de"])  # Add more languages as needed
+
 
 # Upload the video
 uploaded_video = st.file_uploader("Upload a video", type=["mp4"])
@@ -47,7 +51,7 @@ if st.button("Translate Video"):
     st.write(text)
 
     
-    translated = GoogleTranslator(source='auto', target='hi').translate(text.text)
+    translated = GoogleTranslator(source='auto', target=target_language).translate(text.text)
     st.write(translated)
 
     myobj = gTTS(text=translated, lang='hi' , slow=False)
