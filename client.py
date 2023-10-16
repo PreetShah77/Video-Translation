@@ -3,17 +3,12 @@ from moviepy.editor import VideoFileClip, AudioFileClip, CompositeVideoClip
 from gtts import gTTS
 import shutil
 import openai
-from decouple import Config, Csv
 from deep_translator import GoogleTranslator
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-config = Config()
-config.read(".env")
-
-# Access the API key
-openai.api_key = config.get("OPENAI_API_KEY")
-
-
-openai.api_key = st.secrets["openai_key"]
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 hide_streamlit_style = """
             <style>
