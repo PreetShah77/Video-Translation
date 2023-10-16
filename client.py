@@ -3,7 +3,14 @@ from moviepy.editor import VideoFileClip, AudioFileClip, CompositeVideoClip
 from gtts import gTTS
 import shutil
 import openai
+from decouple import Config, Csv
 from deep_translator import GoogleTranslator
+
+config = Config()
+config.read(".env")
+
+# Access the API key
+openai.api_key = config.get("OPENAI_API_KEY")
 
 
 openai.api_key = st.secrets["openai_key"]
